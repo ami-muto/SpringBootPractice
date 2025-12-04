@@ -34,8 +34,7 @@
 				<td th:text="${contact.contactType}"></td>
 				<td th:text="${contact.body}"></td>
 				<td th:text="${contact.createdAt}"></td>
-				<td th:text="${contact.updatedAt}"></td>
-				
+				<td th:text="${contact.updatedAt}"></td>	
 			</tr>
 		</table>
 		<a th:href="@{/admin/contacts/{id}/edit(id=${contact.id})}">編集画面へ</a>

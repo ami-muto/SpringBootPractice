@@ -77,7 +77,5 @@ public class ContactServiceImpl implements ContactService {
 	public void deleteContact(Long id) {
 		contactRepository.deleteById(id);
 		// TODO 自動生成されたメソッド・スタブ
-		
 	}
-
 }

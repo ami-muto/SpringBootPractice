@@ -80,5 +80,4 @@ public class AdminController {
 	public String logout() {
 	return"redirect:/signin";
 	}
-
 }
