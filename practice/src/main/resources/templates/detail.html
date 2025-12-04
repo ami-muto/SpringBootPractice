@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>お問い合わせの詳細画面</title>
+</head>
+<body>
+	<h1>お問い合わせの詳細画面</h1>
+		<table border="1">
+			<tr>
+				<th>お問い合わせID</th>
+				<th>姓</th>
+				<th>名</th>
+				<th>メールアドレス</th>
+				<th>電話番号</th>
+				<th>郵便番号</th>
+				<th>住所</th>
+				<th>建物名</th>
+				<th>お問い合わせ種別</th>
+				<th>内容</th>
+				<th>作成日時</th>
+				<th>更新日時</th>
+			</tr>
+			<tr>
+<!--			th:each="contact : ${contact}">-->
+				<td th:text="${contact.id}"></td>
+				<td th:text="${contact.lastName}"></td>
+				<td th:text="${contact.firstName}"></td>
+				<td th:text="${contact.email}"></td>
+				<td th:text="${contact.phone}"></td>
+				<td th:text="${contact.zipCode}"></td>
+				<td th:text="${contact.address}"></td>
+				<td th:text="${contact.buildingName}"></td>
+				<td th:text="${contact.contactType}"></td>
+				<td th:text="${contact.body}"></td>
+				<td th:text="${contact.createdAt}"></td>
+				<td th:text="${contact.updatedAt}"></td>
+				
+			</tr>
+		</table>
+		<a th:href="@{/admin/contacts/{id}/edit(id=${contact.id})}">編集画面へ</a>
+		<form th:action="@{/admin/signin}" method="get">
+				<button type="submit">ログアウト</button>
+			 </form>
+
+</body>
+</html>
