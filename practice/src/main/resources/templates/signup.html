@@ -2,9 +2,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>管理者登録</title>
 </head>
 <body>
-	<h1>あ<h1>
+	<h1>管理者登録フォーム</h1>
+		<form action="/admin/signup" method="post">
+		  <label>姓: <input type="text" name="lastName"></label><br>
+		  <label>名: <input type="text" name="firstName"></label><br>
+		  <label>Email: <input type="email" name="email"></label><br>
+		  <label>Password: <input type="password" name="password"></label><br>
+		  <button type="submit">登録</button>
+		</form>
 </body>
 </html>
