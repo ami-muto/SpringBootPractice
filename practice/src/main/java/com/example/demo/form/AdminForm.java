@@ -21,4 +21,5 @@ public class AdminForm {
 	@NotBlank(message = "パスワードは必須です")
 	@Size(min = 6, message = "パスワードは６文字以上で入力してください")
 	private String password;
+
 }
