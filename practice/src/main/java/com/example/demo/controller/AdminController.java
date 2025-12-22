@@ -1,18 +1,26 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
+
+import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.entity.Admin;
 import com.example.demo.entity.Contact;
+import com.example.demo.form.AdminForm;
 import com.example.demo.form.EditContactForm;
+import com.example.demo.form.SigninForm;
+import com.example.demo.service.AdminService;
 import com.example.demo.service.ContactService;
 
 @Controller
@@ -20,6 +28,8 @@ import com.example.demo.service.ContactService;
 public class AdminController {
 	@Autowired
 	private ContactService contactService;
+	@Autowired
+	private AdminService adminService;
 
 	@GetMapping("/contacts")
 	public String contactList(Model model) {
@@ -32,10 +42,30 @@ public class AdminController {
 	public String signup() {
 		return "signup";
 	}
+	
+	@PostMapping("/signup")
+	public String signup(@Valid @ModelAttribute AdminForm form, BindingResult result) {
+		if (result.hasErrors()) {
+			return "signup";
+		}
+		adminService.signup(form);
+		return "redirect:/admin/signin";
+	}
 
 	@GetMapping("/signin")
 	public String signin() {
 		return "signin";
+	}
+	
+	@PostMapping("/signin")
+	public String signin(@ModelAttribute SigninForm form,Model model) {
+		Optional<Admin>admin = adminService.signin(form);
+		if (admin.isPresent()) {
+			model.addAttribute("admin",admin.get());
+			return "welcome";
+		} else {
+			return "signin";
+		}
 	}
 
 	@GetMapping("/contacts/{id}")
