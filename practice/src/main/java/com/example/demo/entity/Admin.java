@@ -30,5 +30,14 @@ public class Admin {
 	@Column(name = "password")
 	private String password;
 	
+	@Column(name = "current_sign_in_at")
+    private java.time.LocalDateTime currentSignInAt;
+
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private java.time.LocalDateTime createdAt;
+
+    @Column(name = "updated_at", nullable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private java.time.LocalDateTime updatedAt;
+	
 	
 }
