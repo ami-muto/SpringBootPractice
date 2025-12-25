@@ -20,6 +20,12 @@ public class AdminService {
 	private PasswordEncoder passwordEncoder;
 	
 	public void signup(AdminForm form) {
+		
+		if (adminRepository.existsByEmail(form.getEmail())) {
+            // すでに存在する場合は、例外を投げて処理を中断する
+            throw new RuntimeException("Duplicate entry for email");
+        }
+		
 		Admin admin = new Admin();
 		admin.setLastName(form.getLastName());
 		admin.setFirstName(form.getFirstName());
