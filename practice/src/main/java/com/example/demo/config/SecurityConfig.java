@@ -13,9 +13,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // CSRFを無効化（HTMLのあの1行を消した理由です）
+            .csrf(csrf -> csrf.disable()) 
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll() // 全てのアクセスを一旦許可してループを防ぎます
+             // ログイン不要
+                .requestMatchers("/admin/signup", "/admin/signin", "/contacts/**").permitAll()
+                // それ以外はすべてログインが必要
+                .anyRequest().authenticated()
             )
             .formLogin(login -> login
                 .loginPage("/admin/signin")
@@ -27,7 +30,7 @@ public class SecurityConfig {
                 .permitAll()
             )
             .logout(logout -> logout
-                .logoutUrl("/logout")
+                .logoutUrl("/admin/logout")
                 .logoutSuccessUrl("/admin/signin"));
 
         return http.build();
