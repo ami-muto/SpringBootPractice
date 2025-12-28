@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>管理者ログイン</title>
 </head>
 <body>
-	<h1></h1>
-	<form action="/admin/signin" method="post">
-	  <label>Email: <input type="email" name="email"></label><br>
-	  <label>Password: <input type="password" name="password"></label><br>
-	  <button type="submit">ログイン</button>
-	</form>
+    <h1>管理者ログイン</h1>
+    
+    <div th:if="${param.error}" style="color: red;">
+        メールアドレスまたはパスワードが間違っています。
+    </div>
+
+    <form th:action="@{/admin/signin}" method="post">
+        <label>Email: <input type="email" name="email"></label><br>
+        <label>Password: <input type="password" name="password"></label><br>
+        <button type="submit">ログイン</button>
+    </form>
 </body>
 </html>

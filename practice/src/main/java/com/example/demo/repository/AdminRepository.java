@@ -6,5 +6,7 @@ import com.example.demo.entity.Admin;
 
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 	Admin findByEmail(String email);
+	
+	boolean existsByEmail(String email);
 
 }
